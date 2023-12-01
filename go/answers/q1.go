@@ -45,7 +45,6 @@ func find_all_matches(input string, substring string, number int) []int {
 		}
 		text_position := strings.Index(input[step:], substring)
 		num_position := strings.Index(input[step:], strconv.Itoa(number))
-		// fmt.Println(input, substring, step, text_position, num_position)
 		if text_position == -1 && num_position == -1 {
 			return match_locations
 		}
@@ -94,11 +93,6 @@ func extract_numbers(input string) int {
 				min_value = value
 			}
 		}
-		// fmt.Println(text_number, value, max_position, min_position, min_value*10+max_value, matched_positions)
-	}
-	// fmt.Println(input, min_position, max_position, min_value*10+max_value)
-	if min_value < 0 || max_value < 0 {
-		panic("h")
 	}
 	return min_value*10 + max_value
 }
@@ -116,10 +110,7 @@ func q1part2(data []string) int {
 	sum := 0
 	for _, elem := range data {
 		value := extract_numbers(elem)
-		// fmt.Println(elem, value)
 		sum += value
 	}
 	return sum
 }
-
-// Wrong  54254
