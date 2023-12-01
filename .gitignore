@@ -1,1 +1,4 @@
 *.txt
+*.exe
+*.bat
+*.obj
