@@ -12,7 +12,7 @@ var runProfile bool
 
 var questionMap = map[int]func() []interface{}{
 	1: answers.Day1,
-	// 2:  answers.Day2,
+	2: answers.Day2,
 	// 3:  answers.Day3,
 	// 4:  answers.Day4,
 	// 5:  answers.Day5,
