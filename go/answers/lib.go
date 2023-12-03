@@ -257,3 +257,22 @@ func Vector3InSlice(vec Vector3, slice []Vector3) bool {
 	}
 	return false
 }
+
+func RuneInSlice(run rune, slice []rune) bool {
+	for _, i := range slice {
+		if run == i {
+			return true
+		}
+	}
+	return false
+}
+
+func RuneNotInSlice(run rune, slice []rune) bool {
+	for _, i := range slice {
+		if run == i {
+			return false
+		}
+	}
+	return true
+}
+\
