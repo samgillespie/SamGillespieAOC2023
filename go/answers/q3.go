@@ -137,8 +137,3 @@ func q3part2(data []string) int {
 
 	return total
 }
-
-// 544502 Too high
-// 546817 Too high
-// 523575 Wrong
-// 536676 Wrong
