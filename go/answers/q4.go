@@ -1,7 +1,6 @@
 package answers
 
 import (
-	"fmt"
 	"math"
 	"strconv"
 	"strings"
@@ -38,19 +37,6 @@ func (s Scratchcard) Matches() int {
 func (s Scratchcard) Score() int {
 	matches := float64(s.Matches())
 	return int(math.Pow(2.0, matches-1))
-}
-
-func toListOfInts(number_strings []string) []int {
-	numbers := []int{}
-	for _, str := range number_strings {
-		converted, err := strconv.Atoi(str)
-		if err != nil {
-			// Can be '' sometimes because of split
-			continue
-		}
-		numbers = append(numbers, converted)
-	}
-	return numbers
 }
 
 func parse_scratchcard(card string) Scratchcard {
@@ -93,7 +79,6 @@ func q4part2(cards []Scratchcard) int {
 			totals[i+j+1] += card
 		}
 	}
-	fmt.Println(totals)
 	sum := 0
 	for _, i := range totals {
 		sum += i
