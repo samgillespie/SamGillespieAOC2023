@@ -1,7 +1,6 @@
 package answers
 
 import (
-	"fmt"
 	"sort"
 	"strings"
 )
@@ -159,7 +158,6 @@ func GetAllReachableLocations(inputs [][]int, targetMap [][]int) [][]int {
 	reachable_locations := [][]int{}
 	for _, input := range inputs {
 		new_map := GetReachableLocations(input[0], input[1], targetMap)
-		fmt.Println("Transformed: ", input, new_map)
 		reachable_locations = append(reachable_locations, new_map...)
 	}
 	return reachable_locations

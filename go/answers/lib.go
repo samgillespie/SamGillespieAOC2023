@@ -275,3 +275,16 @@ func RuneNotInSlice(run rune, slice []rune) bool {
 	}
 	return true
 }
+
+func toListOfInts(number_strings []string) []int {
+	numbers := []int{}
+	for _, str := range number_strings {
+		converted, err := strconv.Atoi(str)
+		if err != nil {
+			// Can be '' sometimes because of split
+			continue
+		}
+		numbers = append(numbers, converted)
+	}
+	return numbers
+}
