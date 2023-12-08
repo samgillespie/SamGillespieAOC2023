@@ -1,7 +1,6 @@
 package answers
 
 import (
-	"fmt"
 	"sort"
 	"strconv"
 	"strings"
@@ -41,7 +40,14 @@ var CARD_RANKING_PART_B map[byte]int = map[byte]int{
 
 func Day7() []interface{} {
 	data := ReadInputAsStr(7)
-	return []interface{}{q7part1(data), q7part2(data)}
+	score_map := map[string]int{}
+	hands := []string{}
+	for _, row := range data {
+		split := strings.Split(row, " ")
+		score_map[split[0]], _ = strconv.Atoi(split[1])
+		hands = append(hands, split[0])
+	}
+	return []interface{}{q7part1(score_map, hands), q7part2(score_map, hands)}
 }
 
 func is_x_of_a_kind(hand string, n int, jokers_wild bool) bool {
@@ -162,53 +168,40 @@ func sort_hand_by_card_value(hand1 string, hand2 string, jokers_wild bool) bool 
 	return false
 }
 
-func q7part1(data []string) int {
-	hands_to_score := map[string]int{}
-	hands := []string{}
-	for _, row := range data {
-		split := strings.Split(row, " ")
-		hands_to_score[split[0]], _ = strconv.Atoi(split[1])
-		hands = append(hands, split[0])
-	}
+func q7part1(score_map map[string]int, hands []string) int {
+	jokers_wild := false
 	sort.SliceStable(hands, func(i, j int) bool {
-		hand1 := rank_hand(hands[i], false)
-		hand2 := rank_hand(hands[j], false)
+		hand1 := rank_hand(hands[i], jokers_wild)
+		hand2 := rank_hand(hands[j], jokers_wild)
 		if hand1 == hand2 {
-			return sort_hand_by_card_value(hands[i], hands[j], false)
+			return sort_hand_by_card_value(hands[i], hands[j], jokers_wild)
 		}
 		return hand1 < hand2
 	})
 
 	total := 0
 	for rank, hand := range hands {
-		score := hands_to_score[hand]
+		score := score_map[hand]
 		total += (rank + 1) * score
 	}
 
 	return total
 }
 
-func q7part2(data []string) int {
-	hands_to_score := map[string]int{}
-	hands := []string{}
-	for _, row := range data {
-		split := strings.Split(row, " ")
-		hands_to_score[split[0]], _ = strconv.Atoi(split[1])
-		hands = append(hands, split[0])
-	}
+func q7part2(score_map map[string]int, hands []string) int {
+	jokers_wild := true
 	sort.SliceStable(hands, func(i, j int) bool {
-		hand1 := rank_hand(hands[i], true)
-		hand2 := rank_hand(hands[j], true)
+		hand1 := rank_hand(hands[i], jokers_wild)
+		hand2 := rank_hand(hands[j], jokers_wild)
 		if hand1 == hand2 {
-			return sort_hand_by_card_value(hands[i], hands[j], true)
+			return sort_hand_by_card_value(hands[i], hands[j], jokers_wild)
 		}
 		return hand1 < hand2
 	})
 
-	fmt.Println(hands)
 	total := 0
 	for rank, hand := range hands {
-		score := hands_to_score[hand]
+		score := score_map[hand]
 		total += (rank + 1) * score
 	}
 
