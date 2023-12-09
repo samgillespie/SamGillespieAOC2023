@@ -113,6 +113,14 @@ func minSlice(slice []int) (int, int) {
 	return pos, min
 }
 
+func sumSlice(slice []int) int {
+	value := 0
+	for _, elem := range slice {
+		value += elem
+	}
+	return value
+}
+
 type Vector struct {
 	x int
 	y int
