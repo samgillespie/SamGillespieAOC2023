@@ -99,5 +99,3 @@ func q11part2(galaxies []Vector, empty_rows []int, empty_columns []int) int {
 	}
 	return total_distance
 }
-
-//wrong: 9189792
