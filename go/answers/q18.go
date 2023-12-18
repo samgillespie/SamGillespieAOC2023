@@ -21,7 +21,6 @@ type DigPlan struct {
 func (d DigPlan) parse_hex_code() (rune, int) {
 	// Converts the hex_code to a direction and a distance
 	dir := ' '
-	fmt.Println(d.hex_code)
 	switch {
 	case d.hex_code[5] == '0':
 		dir = 'R'
@@ -223,9 +222,6 @@ func q18part2(dig_plan []DigPlan) int {
 		case dir == 'R':
 			x += distance
 		}
-
-		fmt.Println(string(dir), distance, x, y)
-
 		vertices = append(vertices, Vector{x: x, y: y})
 		circumference += distance
 	}
@@ -238,9 +234,3 @@ func q18part2(dig_plan []DigPlan) int {
 	total += circumference
 	return total/2 + 1
 }
-
-// 1310696277420
-// 952408144115   // Correct
-// 952404941483
-// 952401738852
-// 951051504286
